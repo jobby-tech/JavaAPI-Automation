@@ -113,5 +113,48 @@ public class Assignment {
             httpClient.close();
         }
 	}
+
+
+@And("^Try Simple Post$")	
+	public void Try_Simple_Post() throws IOException{
+		
+		 
+				String url="https://simple-books-api.glitch.me/api-clients";
+		        String result = "";
+		        HttpPost post = new HttpPost(url);
+		        //post.addHeader("Authorization", "Bearer 4b899e341b3a29bb5c9c9cd11c08cad179a84b07b71fe76f9f754d43a64a3c23");
+		        
+		        post.setHeader("Accept", "application/json");
+			    post.setHeader("Content-type", "application/json");
+			    
+//		        StringBuilder json = new StringBuilder();
+//		        json.append("{");
+//		        json.append("\"clientName\":\"mkyong\",");
+//		        json.append("\"clientEmail\":\"hellsdo@g.com\"");
+//		        json.append("}");
+			    
+			    String json = "{\r\n"+	        
+			    		"\"clientName\": \"mkyong\",\r\n"+
+			    		"\"clientEmail\": \"hellsdo@g.com\"\r\n"+
+			    		"}\r\n"+
+			    		"";
+
+		        System.out.println(json);
+		        // send a JSON data
+		        post.setEntity(new StringEntity(json.toString()));
+
+		        
+		        try (CloseableHttpClient httpClient = HttpClients.createDefault();
+		        		
+		             CloseableHttpResponse response = httpClient.execute(post)) {
+
+		            result = EntityUtils.toString(response.getEntity());
+		            System.out.println(result);
+		        }
+
+		        		    
+		
+		
+	}
 		
 }
