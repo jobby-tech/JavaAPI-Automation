@@ -9,7 +9,8 @@ Feature: First Login Feature
  
   @Regression
   Scenario: Get API Test
-  Given start the script
+  	Given start the script
 	Then script execution in progress
 	And Execution completed
 	And Get API Response
+	And Try Simple Post
